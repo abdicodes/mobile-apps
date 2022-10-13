@@ -6,7 +6,7 @@ export default function App() {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={styles.safeView}>
         <Text style={styles.welcomeText}>Hello</Text>
         <Text style={styles.subtitleText}>My name is</Text>
         <StatusBar style="auto" />
@@ -46,10 +46,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     justifyContent: 'center',
+    borderRadius: 30,
   },
   nameText: {
     fontSize: 60,
     textAlign: 'center',
     fontWeight: 'bold',
+    textTransform: 'uppercase',
+  },
+  safeView: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
 });
