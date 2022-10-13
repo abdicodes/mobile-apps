@@ -1,13 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
 export default function App() {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_LEFT);
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <SafeAreaView>
+        <Text style={styles.welcomeText}>Hello</Text>
+        <Text style={styles.subtitleText}>My name is</Text>
+        <StatusBar style="auto" />
+        <View style={styles.nameBox}>
+          <Text style={styles.nameText}>Abdirahman 👨🏽‍💻</Text>
+        </View>
+      </SafeAreaView>
     </View>
   );
 }
@@ -25,5 +31,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
+  },
+  subtitleText: {
+    fontSize: 30,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  nameBox: {
+    width: '100%',
+    height: '55%',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    justifyContent: 'center',
+  },
+  nameText: {
+    fontSize: 60,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
