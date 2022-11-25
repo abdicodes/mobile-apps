@@ -21,7 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f00',
+    backgroundColor: '#d65151',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -29,21 +29,21 @@ const styles = StyleSheet.create({
     fontSize: 90,
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    color: 'white',
+    color: '#e6d1d1',
     textAlign: 'center',
   },
   subtitleText: {
     fontSize: 30,
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    color: 'white',
+    color: '#e6d1d1',
     marginBottom: 20,
     textAlign: 'center',
   },
   nameBox: {
     width: '100%',
     height: '55%',
-    backgroundColor: 'white',
+    backgroundColor: '#E6A1E5',
     borderRadius: 5,
     justifyContent: 'center',
     borderRadius: 30,
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     textTransform: 'uppercase',
+    color: '#195E1A',
   },
   safeView: {
     flex: 1,
