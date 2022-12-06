@@ -10,6 +10,11 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
+/* got this helper function from 
+https://stackoverflow.com/questions/57114354/react-native-responsive-font-size
+by using width, height and pixelratio 
+it can readjust given font or margin number accordingly */
+
 const normalize = (size, multiplier = 2) => {
   const scale = (width / height) * multiplier;
 
@@ -81,18 +86,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold',
-    fontSize: normalize(35),
+    fontSize: normalize(70),
   },
   horizontalLine: {
     flexDirection: 'row',
-    borderBottomWidth: 4,
+    borderBottomWidth: 5,
     borderBottomColor: 'black',
   },
 
   verticalLine: {
     flexDirection: 'row',
     flex: 1,
-    borderRightWidth: 4,
+    borderRightWidth: 5,
     borderRightColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    borderRightWidth: 4,
+    borderRightWidth: 5,
     borderRightColor: '#fff',
   },
   paddingView: {
