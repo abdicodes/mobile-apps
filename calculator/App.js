@@ -14,11 +14,25 @@ const ButtonWidth = width / 5;
 export default function App() {
   const [answerValue, setAnswerValue] = useState(0);
   const [readyToReplace, setReadyToReplace] = useState(true);
-  const [memoryValue, setMemoryValue] = useState(null);
-  const [operatorValue, setOperatorValue] = useState(null);
+  const [memoryValue, setMemoryValue] = useState(0);
+  const [operatorValue, setOperatorValue] = useState(0);
   const handleNumber = (number) => {
     if (readyToReplace) return number;
     else return '' + answerValue + number;
+  };
+  const calculateEquals = (prev, curr, operand) => {
+    if (operand == '+') {
+      return (prev += curr);
+    }
+    if (operand == '-') {
+      return (prev -= curr);
+    }
+    if (operand == '*') {
+      return (prev *= curr);
+    }
+    if (operand == '/') {
+      return (prev /= curr).toFixed(2);
+    }
   };
   const buttonPressed = (value) => {
     if (typeof value === 'number') {
@@ -28,6 +42,20 @@ export default function App() {
     if (value == 'c') {
       setAnswerValue(0);
       setReadyToReplace(true);
+      setMemoryValue(0);
+      setOperatorValue(0);
+    }
+    if ((value == '+') | (value == '-') | (value == '/') | (value == '*')) {
+      setMemoryValue(answerValue);
+      setReadyToReplace(true);
+      setOperatorValue(value);
+    }
+    if (value == '=') {
+      const res = calculateEquals(memoryValue, answerValue, operatorValue);
+      setAnswerValue(res);
+      setReadyToReplace(true);
+      setMemoryValue(0);
+      setOperatorValue(0);
     }
   };
   return (
