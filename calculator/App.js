@@ -13,13 +13,33 @@ const { width } = Dimensions.get('window');
 const ButtonWidth = width / 5;
 export default function App() {
   const [answerValue, setAnswerValue] = useState(0);
+  const [readyToReplace, setReadyToReplace] = useState(true);
+  const [memoryValue, setMemoryValue] = useState(null);
+  const [operatorValue, setOperatorValue] = useState(null);
+  const handleNumber = (number) => {
+    if (readyToReplace) return number;
+    else return '' + answerValue + number;
+  };
+  const buttonPressed = (value) => {
+    if (typeof value === 'number') {
+      setAnswerValue(handleNumber(value));
+      if (value != 0) setReadyToReplace(false);
+    }
+    if (value == 'c') {
+      setAnswerValue(0);
+      setReadyToReplace(true);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.result}>
         <Text style={styles.resultText}>{answerValue}</Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity style={[styles.button, styles.lightGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('c')}
+          style={[styles.button, styles.lightGreyButton]}
+        >
           <Text style={styles.blackButtonText}>C</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, styles.lightGreyButton]}>
@@ -28,67 +48,113 @@ export default function App() {
         <TouchableOpacity style={[styles.button, styles.lightGreyButton]}>
           <Text style={styles.blackButtonText}>%</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.blueButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('/')}
+          style={[styles.button, styles.blueButton]}
+        >
           <Text style={styles.whiteButtonText}>/</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.row}>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(7)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>7</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(8)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>8</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(9)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>9</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.blueButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('*')}
+          style={[styles.button, styles.blueButton]}
+        >
           <Text style={styles.whiteButtonText}>x</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.row}>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(4)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>4</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(5)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>5</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(6)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>6</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.blueButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('-')}
+          style={[styles.button, styles.blueButton]}
+        >
           <Text style={styles.whiteButtonText}>-</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.row}>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(1)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(2)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>2</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed(3)}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>3</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.blueButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('+')}
+          style={[styles.button, styles.blueButton]}
+        >
           <Text style={styles.whiteButtonText}>+</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.row}>
         <TouchableOpacity
+          onPress={() => buttonPressed(0)}
           style={[styles.button, styles.darkGreyButton, styles.zeroButton]}
         >
           <Text style={[styles.whiteButtonText, styles.zeroText]}>0</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.darkGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('.')}
+          style={[styles.button, styles.darkGreyButton]}
+        >
           <Text style={styles.whiteButtonText}>.</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.blueButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('=')}
+          style={[styles.button, styles.blueButton]}
+        >
           <Text style={styles.whiteButtonText}>=</Text>
         </TouchableOpacity>
       </View>
