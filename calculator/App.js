@@ -83,8 +83,16 @@ export default function App() {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.result}>
-        <Text style={styles.resultText}>{answerValue}</Text>
+      <View style={styles.upperScreen}>
+        <View style={styles.result}>
+          <Text style={styles.resultText}>
+            {operatorValue ? operatorValue : ''}
+          </Text>
+        </View>
+
+        <View style={styles.result}>
+          <Text style={styles.resultText}>{answerValue}</Text>
+        </View>
       </View>
       <View style={styles.row}>
         <TouchableOpacity
@@ -245,6 +253,11 @@ const styles = StyleSheet.create({
   result: {
     alignItems: 'flex-end',
     marginRight: 10,
+  },
+  upperScreen: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
 
   row: {
