@@ -39,7 +39,7 @@ export default function App() {
     }
   };
   const buttonPressed = (value) => {
-    if (typeof value === 'number') {
+    if ((typeof value === 'number') | (value == '.')) {
       setAnswerValue(handleNumber(value));
       if (value != 0) setReadyToReplace(false);
     }
@@ -81,6 +81,9 @@ export default function App() {
       setOperatorValue(0);
     }
   };
+  if (toString(answerValue).length > 8 && toString(answerValue).includes('.')) {
+    console.log('hello world');
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.upperScreen}>
@@ -91,7 +94,12 @@ export default function App() {
         </View>
 
         <View style={styles.result}>
-          <Text style={styles.resultText}>{answerValue}</Text>
+          <Text style={styles.resultText}>
+            {toString(answerValue).length > 8 &&
+            toString(answerValue).includes('.')
+              ? answerValue.toFixed(2)
+              : answerValue}
+          </Text>
         </View>
       </View>
       <View style={styles.row}>
