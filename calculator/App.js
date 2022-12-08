@@ -6,6 +6,7 @@ import {
   Dimensions,
   SafeAreaView,
   TouchableOpacity,
+  Switch,
 } from 'react-native';
 import { useState } from 'react';
 const { width } = Dimensions.get('window');
@@ -21,17 +22,20 @@ export default function App() {
     else return '' + answerValue + number;
   };
   const calculateEquals = (prev, curr, operand) => {
-    if (operand == '+') {
-      return (prev += curr);
-    }
-    if (operand == '-') {
-      return (prev -= curr);
-    }
-    if (operand == '*') {
-      return (prev *= curr);
-    }
-    if (operand == '/') {
-      return (prev /= curr).toFixed(2);
+    prev = Number(prev);
+    curr = Number(curr);
+    switch (operand) {
+      case '+':
+        return (prev += curr);
+
+      case '-':
+        return (prev -= curr);
+
+      case '*':
+        return (prev *= curr);
+
+      case '/':
+        return (prev /= curr).toFixed(5);
     }
   };
   const buttonPressed = (value) => {
@@ -46,6 +50,15 @@ export default function App() {
       setOperatorValue(0);
     }
     if ((value == '+') | (value == '-') | (value == '/') | (value == '*')) {
+      if (operatorValue && memoryValue && answerValue) {
+        const res = calculateEquals(memoryValue, answerValue, operatorValue);
+        setAnswerValue(res);
+        setReadyToReplace(true);
+        setMemoryValue(res);
+        setOperatorValue(value);
+
+        return;
+      }
       setMemoryValue(answerValue);
       setReadyToReplace(true);
       setOperatorValue(value);
@@ -53,6 +66,16 @@ export default function App() {
     if (value == '=') {
       const res = calculateEquals(memoryValue, answerValue, operatorValue);
       setAnswerValue(res);
+      setReadyToReplace(true);
+      setMemoryValue(0);
+      setOperatorValue(0);
+    }
+    if (value == 'sign') {
+      setAnswerValue(-1 * answerValue);
+      console.log(answerValue);
+    }
+    if (value == 'percentage') {
+      setAnswerValue((answerValue * 0.01).toFixed(2));
       setReadyToReplace(true);
       setMemoryValue(0);
       setOperatorValue(0);
@@ -68,12 +91,20 @@ export default function App() {
           onPress={() => buttonPressed('c')}
           style={[styles.button, styles.lightGreyButton]}
         >
-          <Text style={styles.blackButtonText}>C</Text>
+          <Text style={styles.blackButtonText}>
+            {!answerValue && !memoryValue ? 'AC' : 'C'}
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.lightGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('sign')}
+          style={[styles.button, styles.lightGreyButton]}
+        >
           <Text style={styles.blackButtonText}>+/-</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.lightGreyButton]}>
+        <TouchableOpacity
+          onPress={() => buttonPressed('percentage')}
+          style={[styles.button, styles.lightGreyButton]}
+        >
           <Text style={styles.blackButtonText}>%</Text>
         </TouchableOpacity>
         <TouchableOpacity
