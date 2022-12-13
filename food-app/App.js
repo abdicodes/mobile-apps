@@ -26,7 +26,7 @@ const HomescreenCell = (props) => {
           <Image
             source={props.imgUri}
             style={{
-              maxHeight: '100%',
+              maxHeight: '80%',
               maxWidth: '100%',
             }}
           />
@@ -39,13 +39,17 @@ const HomescreenCell = (props) => {
               justifyContent: 'center',
               alignItems: 'center',
               position: 'absolute',
-              bottom: '-8%',
+              bottom: '15%',
               right: '10%',
               borderRadius: '20%',
             }}
           >
-            <Text>{props.eta}</Text>
-            <Text>Mins</Text>
+            <Text style={styles.etaText}>{props.eta}</Text>
+            <Text style={styles.etaText}>Mins</Text>
+          </View>
+          <View>
+            <Text style={styles.titleText}>{props.title}</Text>
+            <Text style={styles.subtitleText}>{props.tagline}</Text>
           </View>
         </View>
       }
@@ -92,5 +96,17 @@ const styles = StyleSheet.create({
   },
   cell: {
     height: 290,
+  },
+  titleText: {
+    fontWeight: 'bold',
+    fontSize: '26',
+    paddingVertical: 10,
+  },
+  subtitleText: {
+    color: 'purple',
+  },
+  etaText: {
+    fontWeight: 'bold',
+    fontSize: '18',
   },
 });
