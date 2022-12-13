@@ -28,6 +28,9 @@ const HomescreenCell = (props) => {
             style={{
               maxHeight: '80%',
               maxWidth: '100%',
+              borderRadius: 20,
+              borderColor: '#5A5A5A',
+              borderWidth: 1,
             }}
           />
 
@@ -42,6 +45,8 @@ const HomescreenCell = (props) => {
               bottom: '15%',
               right: '10%',
               borderRadius: '20%',
+              borderWidth: 1,
+              borderColor: '#5A5A5A',
             }}
           >
             <Text style={styles.etaText}>{props.eta}</Text>
@@ -56,6 +61,36 @@ const HomescreenCell = (props) => {
     />
   );
 };
+const data = [
+  {
+    title: 'Top Burger',
+    tagline: 'Cheese, Burger, French fries',
+    price: '£££',
+    eta: '30',
+    imgUri: require('./assets/item1.jpg'),
+  },
+  {
+    title: 'Briyani King',
+    tagline: 'Briyani, Chicken, Rice',
+    price: '£',
+    eta: '30-45',
+    imgUri: require('./assets/item2.jpg'),
+  },
+  {
+    title: 'Bono Pizzeria',
+    tagline: 'Pizza, Pepperoni, Vegeterian,Hawaii',
+    price: '£££',
+    eta: '50+',
+    imgUri: require('./assets/item3.jpg'),
+  },
+  {
+    title: "Joe's Gelato",
+    tagline: 'Desert, Ice, cream, ',
+    price: '££',
+    eta: '20',
+    imgUri: require('./assets/item4.jpg'),
+  },
+];
 const Stack = createStackNavigator();
 const Home = () => {
   return (
@@ -63,12 +98,20 @@ const Home = () => {
       <ScrollView style={{ height: '100%' }}>
         <TableView>
           <Section name="" hideSeparator="true" separatorTintColor="#ccc">
-            <HomescreenCell
+            {/* <HomescreenCell
               title="Joe's Gelato"
               tagline="Desert, Ice cream, £££"
               eta="10-30"
-              imgUri={require('./assets/item2.jpg')}
-            />
+              imgUri={require('./assets/item3.jpg')}
+            /> */}
+            {data.map((element, i) => (
+              <HomescreenCell
+                title={element.title}
+                tagline={element.tagline}
+                eta={element.eta}
+                imgUri={element.imgUri}
+              />
+            ))}
           </Section>
         </TableView>
       </ScrollView>
@@ -95,7 +138,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cell: {
+    flex: 1,
     height: 290,
+    marginBottom: 70,
   },
   titleText: {
     fontWeight: 'bold',
@@ -103,7 +148,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   subtitleText: {
-    color: 'purple',
+    color: '#5A5A5A',
   },
   etaText: {
     fontWeight: 'bold',
