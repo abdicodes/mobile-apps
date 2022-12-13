@@ -6,7 +6,6 @@ import {
   Dimensions,
   SafeAreaView,
   TouchableOpacity,
-  Switch,
 } from 'react-native';
 import { useState } from 'react';
 const { width } = Dimensions.get('window');
@@ -36,6 +35,8 @@ export default function App() {
 
       case '/':
         return (prev /= curr).toFixed(5);
+      default:
+        throw Error('unknown command');
     }
   };
   const buttonPressed = (value) => {
