@@ -12,6 +12,8 @@ import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 const { width, height } = Dimensions.get('window');
+import { data } from './assets/data';
+const Stack = createStackNavigator();
 
 const HomescreenCell = (props) => {
   return (
@@ -62,71 +64,55 @@ const HomescreenCell = (props) => {
     />
   );
 };
-const data = [
-  {
-    title: 'Top Burger',
-    tagline: 'Cheese, Burger, French fries',
-    price: '£££',
-    eta: '30',
-    menu: [
-      {
-        title: 'Burgers',
-        contents: [
-          { title: 'Cheese Burger' },
-          { title: 'Double cheese burger', price: '£ 6.99' },
-        ],
-      },
-    ],
-    imgUri: require('./assets/item1.jpg'),
-  },
-  {
-    title: 'Briyani King',
-    tagline: 'Briyani, Chicken, Rice',
-    price: '£',
-    eta: '30-45',
-    imgUri: require('./assets/item2.jpg'),
-  },
-  {
-    title: 'Bono Pizzeria',
-    tagline: 'Pizza, Pepperoni, Vegeterian,Hawaii',
-    price: '£££',
-    eta: '50+',
-    imgUri: require('./assets/item3.jpg'),
-  },
-  {
-    title: "Joe's Gelato",
-    tagline: 'Desert, Ice, cream, ',
-    price: '££',
-    eta: '20',
-    imgUri: require('./assets/item4.jpg'),
-  },
-];
-const Stack = createStackNavigator();
-const Home = ({ navigation }) => {
+
+const Menu = ({ route }) => {
+  const menu = route.params;
+  // menu.forEach((element) => {
+  //   console.log(element.title);
+  // });
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <ScrollView style={{ height: '100%' }}>
         <TableView>
-          <Section name="" hideSeparator="true" separatorTintColor="#ccc">
-            {data.map((element, i) => (
-              <HomescreenCell
-                title={element.title}
-                tagline={element.tagline}
-                eta={element.eta}
-                imgUri={element.imgUri}
-                action={() => navigation.navigate('Menu')}
-              />
-            ))}
-          </Section>
+          {menu.map((element, i) => (
+            <Section
+              key={i}
+              header={element.title}
+              hideSeparator="true"
+              separatorTintColor="#ccc"
+            >
+              {element.contents.map((meal, i) => (
+                <Cell key={i} title={meal.title} />
+              ))}
+            </Section>
+          ))}
         </TableView>
       </ScrollView>
     </SafeAreaView>
   );
 };
-const Menu = () => (
-  <View>
-    <Text>Hello world</Text>
-  </View>
+
+const Home = ({ navigation }) => (
+  <SafeAreaView style={styles.container}>
+    <ScrollView style={{ height: '100%' }}>
+      <TableView>
+        <Section name="" hideSeparator="true" separatorTintColor="#ccc">
+          {data.map((element, i) => {
+            const itemMenu = { ...element.menu };
+            return (
+              <HomescreenCell
+                title={element.title}
+                tagline={element.tagline}
+                eta={element.eta}
+                imgUri={element.imgUri}
+                action={() => navigation.navigate('Menu', element.menu)}
+              />
+            );
+          })}
+        </Section>
+      </TableView>
+    </ScrollView>
+  </SafeAreaView>
 );
 
 export default function App() {
