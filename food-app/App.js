@@ -17,6 +17,7 @@ const HomescreenCell = (props) => {
   return (
     <Cell
       {...props}
+      onPress={props.action}
       contentContainerStyle={styles.cell}
       backgroundColor="transparent"
       highlightUnderlayColor="#ccc"
@@ -67,6 +68,15 @@ const data = [
     tagline: 'Cheese, Burger, French fries',
     price: '£££',
     eta: '30',
+    menu: [
+      {
+        title: 'Burgers',
+        contents: [
+          { title: 'Cheese Burger' },
+          { title: 'Double cheese burger', price: '£ 6.99' },
+        ],
+      },
+    ],
     imgUri: require('./assets/item1.jpg'),
   },
   {
@@ -92,24 +102,19 @@ const data = [
   },
 ];
 const Stack = createStackNavigator();
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{ height: '100%' }}>
         <TableView>
           <Section name="" hideSeparator="true" separatorTintColor="#ccc">
-            {/* <HomescreenCell
-              title="Joe's Gelato"
-              tagline="Desert, Ice cream, £££"
-              eta="10-30"
-              imgUri={require('./assets/item3.jpg')}
-            /> */}
             {data.map((element, i) => (
               <HomescreenCell
                 title={element.title}
                 tagline={element.tagline}
                 eta={element.eta}
                 imgUri={element.imgUri}
+                action={() => navigation.navigate('Menu')}
               />
             ))}
           </Section>
@@ -118,13 +123,18 @@ const Home = () => {
     </SafeAreaView>
   );
 };
+const Menu = () => (
+  <View>
+    <Text>Hello world</Text>
+  </View>
+);
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Restaurants" component={Home} />
-        {/* <Stack.Screen name="Menu" component={null} /> */}
+        <Stack.Screen name="Menu" component={Menu} />
       </Stack.Navigator>
     </NavigationContainer>
   );
