@@ -33,21 +33,20 @@ export const data = [
     eta: '30-45',
     menu: [
       {
-        title: 'Burgers',
+        title: 'Meals',
         contents: [
-          { title: 'Cheese Burger', price: '£4.99' },
-          { title: 'Double cheese ', price: '£6.99' },
-          { title: 'Krispy Chicken ', price: '£5.99' },
-          { title: ' Spicy krispy Chicken ', price: '£5.99' },
-          { title: ' Veggie burger ', price: '£4.49' },
+          { title: 'Briyani chicken', price: '£8.99' },
+          { title: 'Briyani beef', price: '£11.99' },
+          { title: 'Chicken masala ', price: '£7.99' },
+          { title: ' Curry rice ', price: '£6.99' },
         ],
       },
       {
-        title: 'snacks',
+        title: 'drinks',
         contents: [
-          { title: 'Onion rings', price: '£1.99' },
-          { title: 'Mozzerilla sticks', price: '£2.99' },
-          { title: ' cheesy widges', price: '£2.99' },
+          { title: 'Cocktail', price: '£3.99' },
+          { title: 'Orange juice', price: '£2.99' },
+          { title: ' Soft drinks', price: '£1.99' },
         ],
       },
     ],
@@ -60,21 +59,21 @@ export const data = [
     eta: '50+',
     menu: [
       {
-        title: 'Burgers',
+        title: 'Pizzas',
         contents: [
-          { title: 'Cheese Burger', price: '£4.99' },
-          { title: 'Double cheese ', price: '£6.99' },
-          { title: 'Krispy Chicken ', price: '£5.99' },
-          { title: ' Spicy krispy Chicken ', price: '£5.99' },
-          { title: ' Veggie burger ', price: '£4.49' },
+          { title: 'Pepperoni Pizza', price: '£8.99' },
+          { title: 'Margherita ', price: '£7.99' },
+          { title: 'Veggie supereme ', price: '£8.99' },
+          { title: 'Tuna Pizza ', price: '£7.99' },
+          { title: 'Hawai Pizza', price: '£8.49' },
         ],
       },
       {
         title: 'snacks',
         contents: [
-          { title: 'Onion rings', price: '£1.99' },
+          { title: 'chicken wings', price: '£4.99' },
           { title: 'Mozzerilla sticks', price: '£2.99' },
-          { title: ' cheesy widges', price: '£2.99' },
+          { title: 'cheesy widges', price: '£2.99' },
         ],
       },
     ],
@@ -87,21 +86,19 @@ export const data = [
     eta: '20',
     menu: [
       {
-        title: 'Burgers',
+        title: 'Ice creams',
         contents: [
-          { title: 'Cheese Burger', price: '£4.99' },
-          { title: 'Double cheese ', price: '£6.99' },
-          { title: 'Krispy Chicken ', price: '£5.99' },
-          { title: ' Spicy krispy Chicken ', price: '£5.99' },
-          { title: ' Veggie burger ', price: '£4.49' },
+          { title: 'Chocolate', price: '£4.99' },
+          { title: 'Vanila', price: '£4.99' },
+          { title: 'Strawberry ', price: '£4.99' },
         ],
       },
       {
-        title: 'snacks',
+        title: 'drinks',
         contents: [
-          { title: 'Onion rings', price: '£1.99' },
-          { title: 'Mozzerilla sticks', price: '£2.99' },
-          { title: ' cheesy widges', price: '£2.99' },
+          { title: 'Cocktail', price: '£3.99' },
+          { title: 'Orange juice', price: '£2.99' },
+          { title: ' Soft drinks', price: '£1.99' },
         ],
       },
     ],
