@@ -67,9 +67,7 @@ const HomescreenCell = (props) => {
 
 const Menu = ({ route }) => {
   const menu = route.params;
-  // menu.forEach((element) => {
-  //   console.log(element.title);
-  // });
+
   return (
     <SafeAreaView>
       <ScrollView style={{ height: '100%' }}>
@@ -81,8 +79,8 @@ const Menu = ({ route }) => {
               hideSeparator="true"
               separatorTintColor="#ccc"
             >
-              {element.contents.map((meal, i) => (
-                <Cell key={i} title={meal.title} />
+              {element.contents.map((meal, j) => (
+                <Cell key={j} title={meal.title} />
               ))}
             </Section>
           ))}
@@ -98,9 +96,9 @@ const Home = ({ navigation }) => (
       <TableView>
         <Section name="" hideSeparator="true" separatorTintColor="#ccc">
           {data.map((element, i) => {
-            const itemMenu = { ...element.menu };
             return (
               <HomescreenCell
+                key={i}
                 title={element.title}
                 tagline={element.tagline}
                 eta={element.eta}
